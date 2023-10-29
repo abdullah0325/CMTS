@@ -93,21 +93,24 @@
 <body>
     <div id="converter">
         <h1>Area Converter</h1>
-        <div class="input-group">
-            <label for="marla">Marla:</label>
-            <input type="text" id="marla">
-        </div>
-        <div class="input-group">
-            <label for="sqfeet">Square Feet:</label>
-            <input type="text" id="sqfeet">
-        </div>
-        <button id="convert">Convert</button>
+        <form onsubmit="convertArea(event)">
+            <div class="input-group">
+                <label for="marla">Marla:</label>
+                <input type="text" id="marla" required>
+            </div>
+            <div class="input-group">
+                <label for="sqfeet">Square Feet:</label>
+                <input type="text" id="sqfeet">
+            </div>
+            <button type="submit">Convert</button>
+        </form>
         <div id="result"></div>
         <div id="animated">&#9733;</div>
     </div>
 
     <script>
-        document.getElementById("convert").addEventListener("click", function () {
+        function convertArea(event) {
+            event.preventDefault();
             const marla = parseFloat(document.getElementById("marla").value);
             if (!isNaN(marla)) {
                 const sqfeet = marla * 225; // 1 Marla = 225 Square Feet
@@ -116,7 +119,7 @@
             } else {
                 document.getElementById("result").textContent = "Please enter a valid Marla value.";
             }
-        });
+        }
     </script>
 </body>
 </html>
